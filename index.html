@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME PAGE</title>
+
+
+    <style>
+        /* Basic page styles */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            color: rgb(247, 245, 245);
+            text-align: center;
+        }
+
+
+        /* Background Image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("{{ url_for('static', filename='ai.jpeg') }}");
+            background-size: cover;
+            z-index: -1; /* Place background behind content */
+        }
+
+
+        /* CXC AI Assistant Banner */
+        .banner {
+            background-color: #003366; /* Dark blue */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it's above everything else */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* Main content styling */
+        main {
+            padding: 100px 20px 20px; /* Adjusted padding-top to account for fixed banner */
+        }
+
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: rgba(245, 242, 242, 0);
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(250, 249, 249, 0);
+            border-radius: 10px;
+        }
+
+
+        .nav {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+
+        .nav a {
+            margin: 0 15px;
+            padding: 15px 25px;
+            background-color: #007bff; /* Blue background */
+            color: rgb(253, 253, 253);
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+
+        .nav a:hover {
+            background-color: #0056b3; /* Darker blue for hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+
+        /* About Section with more space */
+        .about-section {
+            margin-top: 200px; /* Moved further down */
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.521);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+
+        /* Zoom effect on sections */
+        .zoom-on-scroll {
+            transition: transform 0.3s ease; /* Smooth scaling transition */
+        }
+
+
+        .zoom-on-scroll:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+
+        .about-section h2 {
+            color: #003366; /* Dark blue */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+
+        .about-section p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #070707;
+            line-height: 1.8;
+        }
+
+
+        /* Additional subsections with more space */
+        .about-subsection {
+            margin-top: 80px;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.521);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+
+        .about-subsection h3 {
+            color: #003366; /* Dark blue */
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+
+
+        .about-subsection h3:hover {
+            transform: scale(1.1); /* Slightly enlarge on hover */
+        }
+
+
+        .about-subsection p {
+            font-size: 1.2em;
+            color: #020202;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+
+        footer {
+            text-align: center;
+            margin-top: 40px; /* Reduced margin to make footer appear smaller */
+            padding: 20px; /* Reduced padding */
+            background-color: #003366; /* Dark blue */
+            color: white;
+            font-size: 0.9em; /* Reduced font size */
+            z-index: 1; /* Ensure the footer is below the scroll-down arrow */
+        }
+
+
+        /* Scroll down arrow styling */
+        .scroll-down {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            text-align: center;
+            z-index: 100; /* Ensure the scroll-down arrow is in front of the footer */
+        }
+
+
+        .scroll-down p {
+            margin: 0;
+            font-size: 1em;
+            color: #f6f8fa; /* Light blue */
+            margin-bottom: 10px;
+        }
+
+
+        .scroll-down .arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #003366; /* Dark blue */
+            margin: 0 auto;
+            animation: bounce 1.5s infinite;
+        }
+
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+
+    <div class="background"></div>
+
+
+    <!-- CXC AI Assistant Banner -->
+    <div class="banner">
+        AI Assistance
+    </div>
+
+
+    <main>
+        <div class="container">
+            <h2>Welcome to Raven's Intelligence</h2>
+            {% if username %}
+                <p>Welcome back, {{ username }}!</p>
+                <div class="nav">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            {% else %}
+                <p>Explore the world of AI with Raven's Intelligence. </p>
+                <div class="nav">
+                    <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <a href="{{ url_for('signup') }}"><i class="fas fa-user-plus"></i> Sign Up</a>
+                </div>
+            {% endif %}
+           
+            <!-- About Section with more space -->
+            <div class="about-section zoom-on-scroll">
+                <h2>About Us</h2>
+                <p>
+                    At Raven's Intelligence, we are passionate about transforming education in the Caribbean through innovative technology. Our team comprises educators, AI experts, and software developers dedicated to enhancing the learning experience for students. We understand the unique challenges faced by students in the Caribbean, particularly in STEM subjects, and are committed to providing tailored, interactive, and effective learning solutions. Through our Tutoring AI Assistants, we aim to empower students by offering personalized support, enabling them to thrive academically.
+                </p>
+            </div>
+
+
+            <!-- Additional subsections with more space -->
+            <div class="about-subsection zoom-on-scroll">
+                <h3>Our Vision</h3>
+                <p>
+                    Our vision is to create a future where every student in the Caribbean has access to high-quality, engaging, and interactive educational resources. We believe that technology can bridge the gap in traditional learning methods, fostering a generation of confident learners equipped with the skills needed to excel in STEM fields. By harnessing the power of AI, we aim to revolutionize education and inspire students to reach their full potential.
+                </p>
+            </div>
+
+
+            <div class="about-subsection zoom-on-scroll">
+                <h3>Our Services</h3>
+                <p>
+                    Raven's Intelligence offers a comprehensive suite of AI-driven tutoring services designed to enhance the learning experience in STEM subjects. Our platform features:
+
+
+                    Targeted Assistance: AI tutors provide personalized support based on content from CSEC textbooks and past exam papers, helping students grasp complex concepts with ease.
+
+
+                    Interactive Learning: Students engage with dynamic visual representations, simulations, and virtual labs that make learning more tangible and enjoyable.
+
+
+                    Customized Learning Paths: Our AI adapts to each student’s learning style and pace, offering tailored study plans and resources to maximize understanding and retention.
+
+
+                    Gamification Elements: We incorporate game-like features to motivate students, making the learning process fun and engaging.
+                </p>
+            </div>
+
+
+            <div class="about-subsection zoom-on-scroll">
+                <h3>Join Our Team</h3>
+                <p>
+                    We are always looking for passionate individuals to join our team at Raven's Intelligence. If you are an educator, developer, or have a keen interest in AI and education, we would love to hear from you! Together, we can make a difference in the lives of students across the Caribbean.
+                </p>
+            </div>
+        </div>
+    </main>
+
+
+    <footer>
+        &copy; 2024 Raven's Intelligence. All Rights Reserved.
+    </footer>
+
+
+    <div class="scroll-down">
+        <p>Scroll Down</p>
+        <div class="arrow"></div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollDown = document.querySelector('.scroll-down');
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+   
+            // If the user scrolls to the bottom of the page, hide the scroll down arrow
+            if (scrollPosition >= documentHeight) {
+                scrollDown.style.display = 'none';
+            } else {
+                scrollDown.style.display = 'block';
+            }
+        });
+    </script>
+   
+</body>
+</html>
+
+
